@@ -1,0 +1,25 @@
+heading: |
+  The world's BEST open source retro gaming solution
+
+lead: |
+  Batocera can be copied to a USB stick or SD card with the aim of turning any computer/nano computer into a feature-rich gaming console.
+
+note: |
+  Note that you must own the games you play in order to comply with the law.
+
+features:
+  title: Features
+  heading: Ready for retro
+  lead: Themes, Shaders, Bezels, Rewinding, RetroAchievements... and much more to discover.
+  items:
+    - title: Powerful
+      ico: mdi:lightning-bolt
+      desc: Batocera.linux is built from the best emulators and the best cores, giving you access to 200+ systems.
+
+    - title: Plug & Play
+      ico: mdi:power-plug
+      desc: Download, flash, connect and play! Batocera.linux is ready for use with zero configuration required.
+
+    - title: Free / Open Source
+      ico: mdi:git
+      desc: Batocera.linux is a fully open source project! All our works are freely available from our [GitHub](https://github.com/batocera-linux/) repository.

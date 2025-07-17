@@ -1,0 +1,15 @@
+---
+title: Changelog
+tags: sitemap
+eleventyComputed:
+  eleventyNavigation:
+    category: Details
+    key: "{{ title }}"
+---
+
+{%- for item in collections.changelog | reverse %}
+  <details name="changelog">
+    <summary>{{ item.data.title if items.data.title else item.data.version }}</summary>
+    <div>{{ item.content | md | safe }}</div>
+  </details>
+{%- endfor %}

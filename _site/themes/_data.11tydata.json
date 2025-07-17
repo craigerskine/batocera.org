@@ -1,0 +1,9 @@
+{
+  "tags": ["main", "sitemap"],
+  "eleventyComputed": {
+    "eleventyNavigation": {
+      "category": "Info",
+      "key": "{{ title }}"
+    }
+  }
+}

@@ -1,0 +1,40 @@
+---
+separator: ' • '
+
+meta:
+  title: batocera.linux
+  description: Game Emulation - Only Cores That Matter
+  url: https://craigerskine.github.io/batocera.org/
+  author: Craig Erskine
+  author_url: https://craigerskine.com
+
+social:
+  - title: X
+    url: https://x.com/batocera_linux
+    ico: fa6-brands:x-twitter
+    color: blue
+  - title: Facebook
+    url: https://facebook.com/linux.batocera
+    ico: fa6-brands:square-facebook
+    color: indigo
+  - title: Youtube
+    url: https://youtube.com/channel/UClFpqHKoXsOIV-GjyZqoZcw
+    ico: fa6-brands:youtube
+    color: red
+  - title: Reddit
+    url: https://reddit.com/r/batocera
+    ico: fa6-brands:reddit
+    color: rose
+  - title: Discord
+    url: https://discord.gg/ndyUKA5
+    ico: fa6-brands:discord
+    color: zinc
+  - title: PayPal
+    url: https://paypal.me/dmanlfc
+    ico: fa6-brands:paypal
+    color: cyan
+
+analytics: |-
+  // google analytics
+  // window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+  // ga('create', 'UA-XXXXXXX-X', 'auto'); ga('set','transport','beacon'); ga('send', 'pageview')

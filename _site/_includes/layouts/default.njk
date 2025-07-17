@@ -1,0 +1,148 @@
+{%- set page_title -%}{{ (title + _site.separator) if title }} {{ _site.meta.title }}{%- endset -%}
+
+<!doctype html>
+<html lang="en" class="bg-transparent antialiased [&:has(:is(dialog[open]))]:(overflow-hidden [scrollbar-gutter:stable])" x-data>
+
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>{{ page_title }}</title>
+    <meta name="description" content="{{ _site.meta.description }}" />
+    <meta name="author" content="{{ _site.meta.author }} - {{ _site.meta.author_url }}" />
+    <meta name="generator" content="{{ eleventy.generator }}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="{{ '/' | url }}favicon.ico" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link onload="this.onload=null;this.rel='stylesheet'" rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" />
+
+    <meta property="og:title" content="{{ page_title }}" />
+    <meta property="og:description" content="{{ _site.meta.description }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ page.url | url }}" />
+    <meta property="og:image" content="{{ '/' | url }}_assets/img/og.png" />
+
+    {% renderblock 'css' %}
+
+  </head>
+
+  <body class="bg-stone-900 text-stone-300 relative !block" style="display: none;" data-instant-intensity="mousedown">
+    <div class="min-h-screen flex-(& col) relative z-10">
+
+      <header class="p-4 w-full flex-none">
+        <nav class="mx-auto p-4 border-(& white/10) max-w-7xl bg-white/5 flex items-center gap-4 rounded-full md:justify-between">
+          <a href="{{ '/' | url }}" class="w-8 h-8 rounded-full shrink-0 flex items-center justify-center transition [&>.logo]:(w-auto h-8) hover:(bg-primary-900/50 scale-125)">
+            {%- include 'inc.logo-b.njk' %}
+          </a>
+          <ul class="text-sm hidden items-center gap-4 md:(flex gap-10)">
+            {%- for item in collections.main | eleventyNavigation %}
+            <li>
+              <a href="{{ item.url | url }}" class="px-2 block relative transition [&:where(.active)]:(text-primary-600 after:(content-[''] h-0.5 bg-primary-600 absolute inset-x-2 -bottom-1.5)) hover:text-primary-400 {% if item.url === page.url or item.url in page.url %} active{% endif %}">
+                {{ item.key }}
+              </a>
+            </li>
+            {%- endfor %}
+          </ul>
+          <ul class="ml-auto flex items-center gap-4 md:ml-0">
+            <li><a href="{{ '/download/' | url }}" class="btn btn-primary btn-sm">Download <b class="icon">↓</b></a></li>
+          </ul>
+          <div x-data="{ menu: false }" class="block md:hidden">
+            <button x-ref="menuToggle" @click.prevent.stop="menu = !menu" class="group w-8 h-8 inline-flex items-center justify-center rounded-full motion-safe:(transition) hover:(bg-gray-500/20) focus-visible:(shadow-none outline-(& 2 current offset-0))" aria-controls="nav-main" :aria-expanded="menu" :aria-pressed="menu">
+              <span class="sr-only">Menu</span>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="w-4 h-4 fill-current pointer-events-none">
+                <rect width="9" height="2" y="7" rx="1" class="origin-center -translate-y-[5px] translate-x-[7px] group-[[aria-pressed=true]]:(translate-x-0 translate-y-0 rotate-[315deg]) motion-safe:(transition-all duration-300)" />
+                <rect width="16" height="2" y="7" rx="1" class="origin-center group-[[aria-pressed=true]]:(rotate-45) motion-safe:(transition-all duration-300)" />
+                <rect width="9" height="2" y="7" rx="1" class="origin-center translate-y-[5px] group-[[aria-pressed=true]]:(translate-y-0 rotate-[135deg]) motion-safe:(transition-all duration-300)" />
+              </svg>
+            </button>
+            <div
+              x-show="menu"
+              x-transition
+              x-anchor.bottom-end.offset.10="$refs.menuToggle"
+              @click.outside="menu = false"
+              @keydown.window.prevent.escape="menu = false"
+              @keydown.window.prevent.ctrl.slash="menu = true"
+            >
+              <ul class="p-2 w-52 bg-stone-950/75 backdrop-blur-sm text-sm space-y-1 rounded-xl ring-(1 inset stone-500/20) shadow-xl">
+                {%- for item in collections.main | eleventyNavigation %}
+                  <li>
+                    <a href="{{ item.url | url }}" class="p-2 block relative rounded-lg transition [&:where(:hover,.active)]:(text-primary-600 bg-stone-500/20 ring-(1 inset stone-500/20)) hover:text-primary-400 {% if item.url === page.url or item.url in page.url %} active{% endif %}">
+                      {{ item.key }}
+                    </a>
+                  </li>
+                  {%- endfor %}
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+      <main class="pb-8 w-full flex-1 md:(pb-24)">
+        <section>
+          <div class="pt-12{{ ' mx-auto w-full max-w-7xl' if page.url !== '/' }}">
+            {{ content | safe }}
+          </div>
+        </section>
+      </main>
+
+      <footer class="border-(t stone-500/10) pt-8 w-full bg-stone-950/25 text-stone-500 flex-none">
+        <div class="mx-auto px-4 max-w-7xl">
+          <div class="pb-8 text-center space-y-5 md:(pb-12 text-start flex items-center justify-between gap-5 space-y-0)">
+            <nav>
+              <ul class="flex flex-wrap flex-col gap-y-8 gap-x-16 md:(flex-row)">
+                {%- for category, items in collections.sitemap | eleventyNavigation | groupby('category') %}
+                <li class="space-y-2 md:space-y-5">
+                  <strong class="text-(accent-500 xs) uppercase font-semibold">{{ category }}</strong>
+                  <ul class="text-sm space-y-2 md:space-y-5">
+                    {%- for item in items %}
+                    <li><a href="{{ item.url }}" class="inline-block relative after:(w-0 h-px bg-current block absolute -bottom-1 left-0 opacity-50 transition-all) transition hover:(text-primary-500 after:(w-full))">{{ item.title }}</a></li>
+                    {%- endfor %}
+                  </ul>
+                </li>
+                {%- endfor %}
+              </ul>
+            </nav>
+            <nav class="shrink-0 flex flex-col items-center md:items-end">
+              <a href="{{ '/' | url }}" class="w-16 h-16 text-stone-500/50 flex items-center justify-center transition hover:(text-stone-500/75 scale-105) [&>.logo]:(w-auto h-full)">
+                {%- include 'inc.logo.njk' %}
+              </a>
+              <ul class="py-5 text-2xl grid grid-cols-3 gap-2 md:(justify-start)">
+                {%- for item in _site.social %}
+                <li>
+                  <a href="{{ item.url }}" class="w-11 h-11 flex items-center justify-center opacity-50 rounded-full motion-safe:(transition) hover:(text-{{ item.color }}-500 bg-{{ item.color}}-500/10 ring-(1 inset current) opacity-100)" aria-label="{{ item.title }}">
+                    <iconify-icon icon="{{ item.ico }}" class="block"></iconify-icon>
+                  </a>
+                </li>
+                {%- endfor %}
+              </ul>
+              {%- set paypal = _site.social | find('title', 'PayPal') -%}
+              <a href="{{ paypal.url | url }}" class="btn btn-default btn-sm"><span class="icon text-primary-400">♥</span> Donate</a>
+            </nav>
+          </div>
+          <div class="border-(t stone-500/10) py-3 text-(xs stone-500 center) leading-relaxed space-y-3 [&_p+p]:(md:(text-end)) md:(py-6 text-start flex-(& wrap) justify-between space-y-0)">
+            <p>
+              &copy;2016-{% year %} {{ _site.meta.title }} CC-BY-NC-SA
+              <span class="block">website by: <a href="{{ _site.meta.author_url }}" class="text-accent-500 font-medium motion-safe:(transition) hover:(text-accent-100 underline)">{{ _site.meta.author }}</a></span>
+            </p>
+            <p>
+              Updated on:
+              <time datetime="{% build 'raw' %}" class="block">{% build %}</time>
+            </p>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+
+    <div class="bg relative z-0">
+      <div class="w-full max-w-3xl aspect-video text-primary-500/25 fixed top-0 right-1/2 blur-3xl"><div class="animate-[spin_30s_linear_infinite] w-full h-full bg-current [clip-path:polygon(25%_0,0_100%,100%_75%)]"></div></div>
+      <div class="pl-52 bg-gradient-to-b from-stone-500/20 via-transparent to-stone-950/20 text-accent-500/25 flex items-center justify-center fixed inset-0 blur-3xl md:pl-96"><div class="animate-[spin_15s_linear_infinite] w-full max-w-xs aspect-square bg-current [clip-path:polygon(25%_0,0_75%,100%_50%)]"></div></div>
+      <div class="w-full max-w-md aspect-video text-stone-500/25 fixed bottom-12 right-12 blur-3xl"><div class="animate-[spin_20s_linear_infinite] w-full h-full bg-current [clip-path:polygon(25%_0,0_100%,100%_75%)]"></div></div>
+      <div class="bg-(grid fixed top) fixed inset-0 opacity-25"></div>
+    </div>
+
+    {%- renderblock 'js' %}
+    <script src="{{ '/' | url }}_assets/js/_app.js?v={% bust %}"></script>
+
+  </body>
+
+</html>
