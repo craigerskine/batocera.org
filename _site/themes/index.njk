@@ -3,3 +3,9 @@ title: Themes
 eleventyNavigation:
   order: 3
 ---
+
+<ul class="mx-auto max-w-fit space-y-2">
+  {%- for item in collections.theme | reverse %}
+    <li>{{ item.data.title }} | {{ item.data.author }} | {{ item.data.updated | dateOnly }} | {{ item.data.size }}MB</li>
+  {%- endfor %}
+</ul>
