@@ -69,6 +69,13 @@ export default function (eleventyConfig) {
     return arr.find(item => item[attribute] === value);
   });
 
+  // date
+  eleventyConfig.addFilter('dateOnly', function (dateVal, locale = 'en-us') {
+    var theDate = new Date(dateVal);
+    const options = {month: '2-digit', day: '2-digit', year: 'numeric', timeZone: 'UTC'};
+    return theDate.toLocaleDateString(locale, options);
+  });
+
   // md {{ some.content | md | safe }}
   eleventyConfig.addFilter('md', function(content) {
     return markdownLibrary.render(content);
