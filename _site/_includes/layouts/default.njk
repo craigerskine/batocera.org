@@ -1,4 +1,5 @@
 {%- set page_title -%}{{ (title + _site.separator) if title }} {{ _site.meta.title }}{%- endset -%}
+{%- from 'macro.heading.njk' import heading -%}
 
 <!doctype html>
 <html lang="en" class="bg-transparent antialiased [&:has(:is(dialog[open]))]:(overflow-hidden [scrollbar-gutter:stable])" x-data>
@@ -20,6 +21,8 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="{{ page.url | url }}" />
     <meta property="og:image" content="{{ '/' | url }}_assets/img/og.png" />
+
+    <link rel="stylesheet" href="/_assets/css/prism.css" />
 
     {% renderblock 'css' %}
 
@@ -79,6 +82,9 @@
       <main class="pb-8 w-full flex-1 md:(pb-24)">
         <section>
           <div class="pt-12{{ ' mx-auto px-4 w-full max-w-7xl' if page.url !== '/' }}">
+            {%- if page.url !== '/' %}
+              {{ heading({ slot: title }) }}
+            {%- endif %}
             {{ content | safe }}
           </div>
         </section>

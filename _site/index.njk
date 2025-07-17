@@ -1,5 +1,7 @@
+{%- from 'macro.heading.njk' import heading -%}
+
 <header class="mx-auto mb-8 px-4 max-w-2xl py-12 text-center flex flex-col items-center gap-5">
-  <h1 class="bg-(gradient-to-r clip-text) from-primary-200 to-accent-500 text-(transparent 4xl wrap-balance) font-black md:(text-6xl)">{{ home.heading }}</h1>
+  {{ heading({ slot: home.heading }) }}
   <p class="text-stone-400">
     {{ home.lead }}
     <small class="mt-5 py-1 px-3 bg-primary-500/20 text-(primary-200 xs) inline-block ring-(1 inset primary-500/20) rounded-full">{{ home.note }}</small>
