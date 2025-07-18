@@ -1,9 +1,0 @@
-{
-  "tags": ["main", "sitemap"],
-  "eleventyComputed": {
-    "eleventyNavigation": {
-      "category": "Help",
-      "key": "{{ title }}"
-    }
-  }
-}

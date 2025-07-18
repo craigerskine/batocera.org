@@ -1,7 +1,7 @@
 {%- from 'macro.heading.njk' import heading -%}
 
 <header class="mx-auto mb-8 px-4 max-w-2xl py-12 text-center flex flex-col items-center gap-5">
-  {{ heading({ slot: home.heading }) }}
+  {{ heading({ class: 'text-4xl md:(text-6xl)', slot: home.heading }) }}
   <p class="text-stone-400">
     {{ home.lead }}
     <small class="mt-5 py-1 px-3 bg-primary-500/20 text-(primary-200 xs) inline-block ring-(1 inset primary-500/20) rounded-full">{{ home.note }}</small>
@@ -15,7 +15,7 @@
 <article class="mx-auto px-4 max-w-4xl">
   <figure class="relative transition [&:has(:hover)]:scale-[101%]">
     <img src="/_assets/img/poster-41.jpg" alt="batocera video poster image" class="w-full aspect-video object-cover rounded-2xl" />
-    <figcaption><a href="#" class="bg-black/80 flex items-center justify-center absolute inset-0 opacity-0 rounded-2xl transition hover:opacity-100"><span class="btn btn-sm bg-stone-800"><iconify-icon icon="mdi:play"></iconify-icon> Watch Trailer</span></a></figcaption>
+    <figcaption><a href="#" @click.prevent class="bg-black/80 flex items-center justify-center absolute inset-0 opacity-0 rounded-2xl transition hover:opacity-100"><span class="btn btn-sm bg-stone-800"><iconify-icon icon="mdi:play"></iconify-icon> Watch Trailer</span></a></figcaption>
   </figure>
 </article>
 

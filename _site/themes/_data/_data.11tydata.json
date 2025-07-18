@@ -1,6 +1,5 @@
 {
   "layout": false,
-  "eleventyExcludeFromCollections": ["main", "sitemap"],
   "tags": ["theme"],
   "permalink": false
 }

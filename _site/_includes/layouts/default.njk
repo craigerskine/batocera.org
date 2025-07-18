@@ -39,7 +39,7 @@
           <ul class="text-sm hidden items-center gap-4 md:(flex gap-10)">
             {%- for item in collections.main | eleventyNavigation %}
             <li>
-              <a href="{{ item.data.link if item.data.link else item.url | url }}" class="px-2 block relative transition [&:where(.active)]:(text-primary-600 after:(content-[''] h-0.5 bg-primary-600 absolute inset-x-2 -bottom-1.5)) hover:text-primary-400 {% if item.url === page.url or item.url in page.url %} active{% endif %}">
+              <a href="{{ item.data.link if item.data.link else item.url | url }}" class="px-2 block relative transition [&:where(.active)]:(text-primary-500 after:(content-[''] h-0.5 bg-current absolute inset-x-2 -bottom-1.5)) hover:text-primary-400 {% if item.url === page.url or item.url in page.url %} active{% endif %}">
                 {{ item.key }}
               </a>
             </li>
@@ -83,7 +83,7 @@
         <section>
           <div class="pt-12{{ ' mx-auto px-4 w-full max-w-7xl' if page.url !== '/' }}">
             {%- if page.url !== '/' %}
-              {{ heading({ slot: title }) }}
+              {{ heading({ class: 'mx-auto mb-16 text-(4xl center) md:(text-6xl)', slot: title }) }}
             {%- endif %}
             {{ content | safe }}
           </div>

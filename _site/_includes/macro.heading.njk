@@ -1,5 +1,14 @@
 {%- macro heading(param) %}
-<{{ param.tag if param.tag else 'h1' }} class="{{ 'mb-16 ' if page.url !== '/' }}bg-(gradient-to-r clip-text) from-primary-200 to-accent-500 text-(transparent 4xl center wrap-balance) font-black md:(text-6xl)">
+<{{ param.tag if param.tag else 'h1' }}
+  class="
+    {{ param.class }}
+    max-w-fit
+    bg-(gradient-to-r clip-text)
+    from-primary-200
+    to-accent-500
+    text-(transparent wrap-balance)
+    font-black
+  ">
     {{ param.slot | safe }}
 </{{ param.tag if param.tag else 'h1' }}>
 {%- endmacro %}
