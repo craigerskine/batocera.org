@@ -15,17 +15,17 @@ eleventyComputed:
 <ul class="mx-auto max-w-xs text-xs grid-(& cols-1) gap-12 sm:(max-w-6xl grid-cols-2) md:grid-cols-3">
   {%- for item in collections.theme | sort(true, true, 'data.updated' ) %}
     {%- set themeHeading %}<a href="{{ item.data.url }}" class="after:(absolute inset-0 z-20 content-[''])">{{ item.data.title }}</a>{%- endset %}
-    <li class="[&:has(:hover)_figcaption]:(opacity-0 scale-95) relative">
+    <li class="[&:has(:hover)_figcaption]:(opacity-0 scale-95) [&:has(:hover)_img]:(scale-105) relative">
       <div class="mb-2 flex-(& col col-reverse)">
         {{ heading({ tag: 'h2', class: 'text-lg', slot: themeHeading | safe }) }}
-        <small class="text-xs font-semibold opacity-70">{{ item.data.author }}</small>
+        <small class="text-xs leading-none font-semibold opacity-70">{{ item.data.author }}</small>
       </div>
       <figure>
-        <img src="/_assets/img/themes/{{ item.data.title | slugify }}.jpg" alt="{{ item.data.title }} theme preview" class="p-px w-full bg-gradient-to-br from-white via-primary-400/50 to-primary-700/50 aspect-video object-(cover bottom) rounded-xl" />
+        <img src="/_assets/img/themes/{{ item.data.title | slugify }}.jpg" alt="{{ item.data.title }} theme preview" class="p-px w-full bg-gradient-to-br from-white via-primary-400/50 to-primary-700/50 aspect-video object-(cover bottom) rounded-xl transition duration-200" />
         <figcaption class="mt-2 absolute inset-x-1 bottom-1 z-10 opacity-100 scale-100 transition duration-200">
-          <ul class="p-1.5 bg-black/80 bg-gradient-to-b from-white/10 backdrop-blur-sm flex-(& wrap) items-center justify-between gap-y-1 gap-x-2 rounded-md shadow-[inset_0_1px_rgba(255,255,255,.2)]">
-            <li><b class="block text-xs opacity-70">Updated:</b><time datetime="{{ item.data.updated | date('YYYY-MM-DD') }}">{{ item.data.updated | date('YYYY-MM-DD') }}</time></li>
-            <li class="text-end font-semibold"><b class="block text-xs opacity-70">Size:</b>{{ item.data.size }}MB</li>
+          <ul class="p-2 bg-black/80 bg-gradient-to-b from-white/10 backdrop-blur-sm font-bold flex-(& wrap) items-center justify-between gap-y-1 gap-x-2 rounded-md shadow-[inset_0_1px_rgba(255,255,255,.2)]">
+            <li><b class="font-normal block opacity-70">Updated:</b> <time datetime="{{ item.data.updated | date('YYYY-MM-DD') }}">{{ item.data.updated | date('YYYY-MM-DD') }}</time></li>
+            <li class="text-end font-semibold"><b class="font-normal block opacity-70">Size:</b> {{ item.data.size }}MB</li>
           </ul>
         </figcaption>
       </figure>
