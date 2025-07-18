@@ -21,12 +21,12 @@ eleventyComputed:
         relative
         {%- if not loop.last %} before:(w-px bg-current block rounded-full absolute top-[25px] -bottom-0.5 right-[5px] opacity-25 content-['']){% endif %}
         after:(w-[11px] h-[11px] bg-(primary-500/75 gradient-to-b) from-white/75 via-transparent to-transparent outline-(& 1 current) outline-offset-2 block rounded-full absolute top-2 right-0 opacity-50 content-[''])">
-        <time datetime="YYYY-MM-DD" class="py-0.5 px-2 bg-accent-500/20 text-xs [font-variant-numeric:tabular-nums] inline-block ring-(1 inset accent-500/20) rounded-full">{{ item.data.date | dateOnly }}</time>
+        <time datetime="{{ item.data.date | date('YYYY/MM/DD') }}" class="py-0.5 px-2 bg-accent-500/20 text-xs [font-variant-numeric:tabular-nums] inline-block ring-(1 inset accent-500/20) rounded-full">{{ item.data.date | date('YYYY/MM/DD') }}</time>
       </p>
       <details class="flex-1 grid grid-cols-1 items-start [interpolate-size:allow-keywords] [&::details-content]:([block-size:0] overflow-hidden transition-all [transition-behavior:allow-discrete]) [&[open]::details-content]:([block-size:auto]) [&[open]_summary]:(before:(rotate-[135deg]))"{% if loop.first %} open{% endif %}>
         <summary class="text-lg font-bold flex items-center gap-4 select-none cursor-pointer relative before:(w-2 h-2 border-(t-1 r-1 current) opacity-25 rotate-45 transition content-('')) [&::marker,&::-webkit-details-marker]:content-['']">
           <b class="h-5 bg-(clip-text gradient-to-r) from-primary-500 to-accent-500 text-(transparent sm) font-semibold absolute bottom-full left-6">v{{ item.data.version }}</b>
-          {{ item.data.title if item.data.title else item.data.date | dateOnly }}
+          {{ item.data.title if item.data.title else item.data.date | date('YYYY-MM-DD') }}
         </summary>
         <div class="prose prose-dark pt-6 pb-12 pl-6 w-full max-w-none text-sm">{{ item.content | md | safe }}</div>
       </details>

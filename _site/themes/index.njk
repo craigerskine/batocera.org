@@ -4,8 +4,18 @@ eleventyNavigation:
   order: 3
 ---
 
-<ul class="mx-auto max-w-fit space-y-2">
+<ul class="mx-auto max-w-fit grid-(& cols-1) gap-6 sm:(max-w-5xl grid-cols-2) md:grid-cols-3">
   {%- for item in collections.theme | reverse %}
-    <li>{{ item.data.title }} | {{ item.data.author }} | {{ item.data.updated | dateOnly }} | {{ item.data.size }}MB</li>
+    <li>
+      <a href="{{ item.data.url }}">{{ item.data.title }}</a>
+      <figure>
+        <img src="/_assets/img/themes/{{ item.data.title | slugify }}.jpg" alt="{{ item.data.title }} theme preview" class="w-full aspect-video object-cover" />
+        <figcaption>
+          {{ item.data.author }}<br />
+          <time datetime="{{ item.data.updated | date('YYYY-MM-DD') }}">{{ item.data.updated | date('YYYY-MM-DD') }}</time><br />
+          {{ item.data.size }}MB
+        </figcaption>
+      </figure>
+    </li>
   {%- endfor %}
 </ul>

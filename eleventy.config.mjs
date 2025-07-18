@@ -70,11 +70,16 @@ export default function (eleventyConfig) {
     return arr.find(item => item[attribute] === value);
   });
 
-  // date
-  eleventyConfig.addFilter('dateOnly', function (dateVal, locale = 'en-us') {
-    var theDate = new Date(dateVal);
-    const options = {month: '2-digit', day: '2-digit', year: 'numeric', timeZone: 'UTC'};
-    return theDate.toLocaleDateString(locale, options);
+  // date - {{ some.date | date('MM-DD-YYYY') }}
+  eleventyConfig.addFilter('date', function (dateVal, format = 'YYYY-MM-DD', locale = 'en-us') {
+    const date = new Date(dateVal);
+    const pad = (n) => String(n).padStart(2, '0');
+    const components = {
+      YYYY: date.getUTCFullYear(),
+      MM: pad(date.getUTCMonth() + 1),
+      DD: pad(date.getUTCDate()),
+    };
+    return format.replace(/YYYY|MM|DD/g, (token) => components[token]);
   });
 
   // md {{ some.content | md | safe }}

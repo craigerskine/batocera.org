@@ -39,7 +39,7 @@
           <ul class="text-sm hidden items-center gap-4 md:(flex gap-10)">
             {%- for item in collections.main | eleventyNavigation %}
             <li>
-              <a href="{{ item.url | url }}" class="px-2 block relative transition [&:where(.active)]:(text-primary-600 after:(content-[''] h-0.5 bg-primary-600 absolute inset-x-2 -bottom-1.5)) hover:text-primary-400 {% if item.url === page.url or item.url in page.url %} active{% endif %}">
+              <a href="{{ item.data.link if item.data.link else item.url | url }}" class="px-2 block relative transition [&:where(.active)]:(text-primary-600 after:(content-[''] h-0.5 bg-primary-600 absolute inset-x-2 -bottom-1.5)) hover:text-primary-400 {% if item.url === page.url or item.url in page.url %} active{% endif %}">
                 {{ item.key }}
               </a>
             </li>
@@ -100,7 +100,7 @@
                   <strong class="text-(accent-500 xs) uppercase font-semibold">{{ category }}</strong>
                   <ul class="text-sm space-y-2 md:space-y-5">
                     {%- for item in items %}
-                    <li><a href="{{ item.url }}" class="inline-block relative after:(w-0 h-px bg-current block absolute -bottom-1 left-0 opacity-50 transition-all) transition hover:(text-primary-500 after:(w-full))">{{ item.title }}</a></li>
+                    <li><a href="{{ item.data.link if item.data.link else item.url | url }}" class="inline-block relative after:(w-0 h-px bg-current block absolute -bottom-1 left-0 opacity-50 transition-all) transition hover:(text-primary-500 after:(w-full))">{{ item.title }}</a></li>
                     {%- endfor %}
                   </ul>
                 </li>
