@@ -1,4 +1,4 @@
-# [batocera.org](https://batocera-linux.netlify.app/)
+# [batocera.org](https://batocera-linux.netlify.app/) [![Netlify Status](https://api.netlify.com/api/v1/badges/9932ce0f-7ee2-4d9b-b4c5-7c17eb364444/deploy-status)](https://app.netlify.com/projects/batocera-linux/deploys)
 
 Website
 
