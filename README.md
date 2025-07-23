@@ -1,4 +1,4 @@
-# [batocera.org](craigerskine.github.io/batocera.org/)
+# [batocera.org](https://batocera-linux.netlify.app/)
 
 Website
 
